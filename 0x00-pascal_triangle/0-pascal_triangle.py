@@ -8,12 +8,11 @@ You can assume n will be always an integer
 
 """
 
-
 def pascal_triangle(n):
-    if n <= 0:
-        return []
-
     triangle = []
+    if n <= 0:
+        return triangle
+
     for i in range(n):
         row = []
         for j in range(i + 1):
