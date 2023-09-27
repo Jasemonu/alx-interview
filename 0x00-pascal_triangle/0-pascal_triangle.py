@@ -1,14 +1,12 @@
 #!/usr/bin/python3
+"""A script to determine pascal's triangle for any number"""
 
-"""
-Create a function def pascal_triangle(n): that returns
-a list of lists of integers representing the Pascal’s triangle of n:
-Returns an empty list if n <= 0
-You can assume n will be always an integer
-
-"""
 
 def pascal_triangle(n):
+    """
+    returns a list of lists of integers representing the Pascal’s triangle of n
+
+    """
     triangle = []
     if n <= 0:
         return triangle
