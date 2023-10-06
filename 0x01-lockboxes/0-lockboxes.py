@@ -1,23 +1,27 @@
 #!/usr/bin/python3
+""" This Module contains a function `canUnlockAll` """
 
 
 def canUnlockAll(boxes):
-    # Create a list to keep track of which boxes are open.
-    # Initialize it with the first box (box 0) being open.
-    open_boxes = [False] * len(boxes)
-    open_boxes[0] = True
+    """Determines if all the boxes can be opened"""
 
-    # Create a stack to perform DFS.
-    stack = [0]
+    if type(boxes) != list:
+        return False
 
-    while stack:
-        current_box = stack.pop()
+    boxesLength = len(boxes)
+    boxestoOpen = [0]
+    openedBoxes = set()
 
-        # Check the keys in the current box.
-        for key in boxes[current_box]:
-            if not open_boxes[key]:
-                open_boxes[key] = True
-                stack.append(key)
+    while boxestoOpen:
+        boxIndex = boxestoOpen.pop()
+        openedBoxes.add(boxIndex)
 
-    # If all boxes are open, return True; otherwise, return False.
-    return all(open_boxes)
+        if type(boxes[boxIndex]) != list:
+            return False
+
+        for key in boxes[boxIndex]:
+            if (key < boxesLength) and (key not in boxestoOpen) and\
+                    (key not in openedBoxes):
+                boxestoOpen.append(key)
+
+    return len(openedBoxes) == len(boxes)
