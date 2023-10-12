@@ -18,4 +18,4 @@ def minOperations(n):
         else:
             total_operations += 1
             len_H += len_copied_H
-    return total_operation
+    return total_operations
