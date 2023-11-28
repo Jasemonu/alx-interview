@@ -1,27 +1,43 @@
 #!/usr/bin/python3
-"""
-a function that returns the perimeter
-of the island described in grid
-"""
+""" Island Perimeter """
 
 
 def island_perimeter(grid):
-    if not grid or not grid[0]:
-        return 0
+    """ return the perimeter of the island described in grid """
+    total_perimeter = 0
 
-    rows, cols = len(grid), len(grid[0])
-    perimeter = 0
+    for i, row in enumerate(grid):
+        for j, element in enumerate(row):
+            # Check if element is land or sea
+            if (element == 0):
+                continue
 
-    for i in range(rows):
-        for j in range(cols):
-            if grid[i][j] == 1:
-                perimeter += 4
-                # Each land cell contributes 4 sides initially
+            # Left check
+            if (j != 0 and row[j - 1] == 0):
+                total_perimeter += 1
+            if (j == 0):
+                # left edge case
+                total_perimeter += 1
 
-                # Check adjacent cells and deduct the shared sides
-                if i > 0 and grid[i - 1][j] == 1:
-                    perimeter -= 2  # Deduct 2 sides for adjacent land cells
-                if j > 0 and grid[i][j - 1] == 1:
-                    perimeter -= 2  # Deduct 2 sides for adjacent land cells
+            # Right check
+            if (j != len(row) - 1 and row[j + 1] == 0):
+                total_perimeter += 1
+            if (j == len(row) - 1):
+                # right edge case
+                total_perimeter += 1
 
-    return perimeter
+            # Upper check
+            if (i != 0 and grid[i - 1][j] == 0):
+                total_perimeter += 1
+            if (i == 0):
+                # top edge case
+                total_perimeter += 1
+
+            # Bottom Check
+            if (i != len(grid) - 1 and grid[i + 1][j] == 0):
+                total_perimeter += 1
+            if (i == len(grid) - 1):
+                # bottom edge case
+                total_perimeter += 1
+
+    return total_perimeter
